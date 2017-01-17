@@ -1,0 +1,11 @@
+
+# Download and install FakeIt
+ExternalProject_Add(
+        fakeit
+        GIT_REPOSITORY https://github.com/eranpeer/FakeIt
+        PREFIX ${CMAKE_CURRENT_BINARY_DIR}/fakeit
+        # Disable install step
+        INSTALL_COMMAND ""
+)
+
+include_directories(${CMAKE_CURRENT_BINARY_DIR}/fakeit/src/fakeit/single_header/gtest)
