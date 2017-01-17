@@ -57,10 +57,6 @@ ExternalProject_Add(
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR}/fakeit/src/fakeit/single_header/gtest)
 
-### OPENCV ###
-
-pkg_search_module(OPENCV REQUIRED opencv)
-
 ##############
 
 add_definitions( -DTEST_DATA_PATH="${CMAKE_SOURCE_DIR}/data" )
@@ -73,10 +69,7 @@ include_directories(src)
 add_executable(unit ${LIBRARY_FILES} ${TEST_FILES})
 target_link_libraries(unit
         libgtest
-        libgmock
-        ${OPENCV_LIBRARIES})
+        libgmock)
 
-target_include_directories(unit PUBLIC ${OPENCV_INCLUDE_DIRS})
-target_compile_options(unit PUBLIC ${OPENCV_CFLAGS_OTHER})
 
 install(TARGETS unit DESTINATION bin)
