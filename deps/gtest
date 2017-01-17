@@ -1,5 +1,8 @@
 ############### GoogleTest & FakeIt ##############################3
+include(ExternalProject)
 
+# We need thread support
+find_package(Threads REQUIRED)
 
 # Download and install GoogleTest
 ExternalProject_Add(

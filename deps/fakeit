@@ -1,3 +1,4 @@
+include(ExternalProject)
 
 # Download and install FakeIt
 ExternalProject_Add(

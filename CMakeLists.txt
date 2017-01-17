@@ -1,24 +1,24 @@
+# project
 cmake_minimum_required(VERSION 3.2)
-project(template)
-
+project(elevator)
 set(CMAKE_CXX_STANDARD 14)
 
-include(ExternalProject)
-
-# We need thread support
-find_package(Threads REQUIRED)
-
+# dependencies
 include(deps/gtest)
 include(deps/fakeit)
 
-add_definitions( -DTEST_DATA_PATH="${CMAKE_SOURCE_DIR}/data" )
+# files
+set(library_files src/elevator.cpp src/elevator.h)
+set(test_files
+        test/main.test.cpp test/elevator.test.cpp)
 
-set(LIBRARY_FILES )
-set(TEST_FILES
-        test/main.test.cpp)
+# library
+if ( library_files )
+ add_library(${PROJECT_NAME} SHARED ${library_files})
+endif()
 
-include_directories(src)
-add_executable(unit ${LIBRARY_FILES} ${TEST_FILES})
+# tests
+add_executable(unit ${library_files} ${test_files})
 target_link_libraries(unit
         libgtest
         libgmock)
