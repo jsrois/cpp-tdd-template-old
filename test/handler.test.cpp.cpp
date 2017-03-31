@@ -27,5 +27,6 @@ TEST_CASE("Handler processes incoming requests", "[mock]") {
   Fake(Method(processor,processRequest));
   Handler handler(&(processor.get()));
   Request sampleRequest("requestContent");
+  handler.handle(sampleRequest);
   Verify(Method(processor,processRequest).Using(sampleRequest)).Exactly(1_Times);
 }
